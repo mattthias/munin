@@ -44,7 +44,8 @@ PODMAN5          := build/master/doc/munin.conf node/doc/munin-node.conf
 .SUFFIXES: .java .class
 
 # This HAS to be the 1st rule
-default: build
+default: 
+	echo "Default"
 
 .java.class:
 	$(JC) -sourcepath plugins/javalib -d build/plugins/javalib $(JFLAGS) plugins/javalib/$(subst plugins/javalib/,,$*.java)
