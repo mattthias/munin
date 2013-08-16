@@ -3,11 +3,10 @@ perl:
   - "5.16"
   - "5.14"
   - "5.10"
-branches:
- only:
-  - master
-  - devel
 install: "/bin/true"
+branches:
+  only:
+    - fix_broken_test_munin_master_node
 before_install:
  - "cpanm --notest File::Copy::Recursive"
  - "cpanm --notest File::Slurp"
