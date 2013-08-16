@@ -24,5 +24,8 @@ my $build = MasterBuilder->new(
     recommends     => {
         #'Net::SSLeay' => 0, In Munin::Common?
     },
+    tmpl_files => \%MasterBuilder::template_files,
 );
+
+$build->add_build_element('tmpl');
 $build->create_build_script;

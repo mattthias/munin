@@ -95,16 +95,8 @@ install-master-prime: $(INFILES_MASTER) install-pre install-master
 	$(CHOWN) $(CGIUSER) $(DBDIR)/cgi-tmp
 	$(CHMOD) 0755 $(DBDIR)/cgi-tmp
 
-	for p in master/www/*.tmpl ;  do \
-		$(INSTALL) -m 0644 "$$p" $(CONFDIR)/templates/ ; \
-	done
-
 	for p in master/static/* ; do \
 		$(INSTALL) -m 0644 "$$p" $(CONFDIR)/static/ ; \
-	done
-
-	for p in master/www/partial/*.tmpl; do \
-		$(INSTALL) -m 0644 "$$p" $(CONFDIR)/templates/partial/ ; \
 	done
 
 	$(INSTALL) -m 0644 master/DejaVuSansMono.ttf $(LIBDIR)/
@@ -399,13 +391,15 @@ build-common: common/Build
 # BUG: the Build script writes files under PWD when it does "install"
 # can't seem to find a way to persuade it to write otherwhere.
 install-%: %/Build
-	cd $* && $(PERL) Build install			\
-            --install_path lib=$(PERLLIB)		\
-            --install_path bin=$(BINDIR)		\
-            --install_path script=$(BINDIR)		\
-            --install_path sbin=$(SBINDIR)		\
-            --install_path bindoc=$(MANDIR)/man1	\
-            --install_path libdoc=$(MANDIR)/man3	\
+	cd $* && $(PERL) Build install			 \
+            --install_path lib=$(PERLLIB)		 \
+            --install_path bin=$(BINDIR)		 \
+            --install_path script=$(BINDIR)		 \
+            --install_path sbin=$(SBINDIR)		 \
+            --install_path bindoc=$(MANDIR)/man1	 \
+            --install_path libdoc=$(MANDIR)/man3	 \
+            --install_path templates=$(CONFDIR)/templates \
+
 
 test-%: %/Build
 	cd $* && $(PERL) Build test --verbose=0 || true
