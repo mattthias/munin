@@ -26,8 +26,12 @@ my $build = MasterBuilder->new(
     },
     tmpl_files   => \%MasterBuilder::template_files,
     static_files => \%MasterBuilder::static_files,
+    fonts_files  => { 'DejaVuSansMono.ttf' => 'fonts/DejaVuSansMono.ttf',
+                      'DejaVuSans.ttf'     => 'fonts/DejaVuSans.ttf',
+                    }
 
 );
 $build->add_build_element('static');
 $build->add_build_element('tmpl');
+$build->add_build_element('fonts');
 $build->create_build_script;

@@ -96,9 +96,6 @@ install-master-prime: $(INFILES_MASTER) install-pre install-master
 	$(CHMOD) 0755 $(DBDIR)/cgi-tmp
 
 
-	$(INSTALL) -m 0644 master/DejaVuSansMono.ttf $(LIBDIR)/
-	$(INSTALL) -m 0644 master/DejaVuSans.ttf $(LIBDIR)/
-
 	test -f $(HTMLDIR)/.htaccess || $(INSTALL) -m 0644 build/master/www/munin-htaccess $(HTMLDIR)/.htaccess
 	test -f "$(CONFDIR)/munin.conf"  || $(INSTALL) -m 0644 build/master/munin.conf $(CONFDIR)/
 
@@ -397,6 +394,8 @@ install-%: %/Build
             --install_path libdoc=$(MANDIR)/man3	 \
             --install_path templates=$(CONFDIR)/templates \
             --install_path static=$(CONFDIR)/static       \
+            --install_path fonts=$(LIBDIR)
+
 
 
 test-%: %/Build
