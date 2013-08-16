@@ -3,9 +3,14 @@ use strict;
 
 use English qw(-no_match_vars);
 use Test::MockModule;
+use Test::MockObject;
 use Test::More tests => 2;
 use File::Temp qw( tempdir );
 
+package RRDs;
+sub create();
+package main;
+ 
 use_ok('Munin::Master::Update');
 
 my $config = Munin::Master::Config->instance()->{config};
