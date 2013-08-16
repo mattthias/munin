@@ -95,9 +95,6 @@ install-master-prime: $(INFILES_MASTER) install-pre install-master
 	$(CHOWN) $(CGIUSER) $(DBDIR)/cgi-tmp
 	$(CHMOD) 0755 $(DBDIR)/cgi-tmp
 
-	for p in master/static/* ; do \
-		$(INSTALL) -m 0644 "$$p" $(CONFDIR)/static/ ; \
-	done
 
 	$(INSTALL) -m 0644 master/DejaVuSansMono.ttf $(LIBDIR)/
 	$(INSTALL) -m 0644 master/DejaVuSans.ttf $(LIBDIR)/
@@ -399,6 +396,7 @@ install-%: %/Build
             --install_path bindoc=$(MANDIR)/man1	 \
             --install_path libdoc=$(MANDIR)/man3	 \
             --install_path templates=$(CONFDIR)/templates \
+            --install_path static=$(CONFDIR)/static       \
 
 
 test-%: %/Build

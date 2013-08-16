@@ -11,6 +11,7 @@ use strict;
 
 
 our %template_files = ();
+our %static_files = ();
 
 # find all templates
 foreach my $template (glob("www/*.tmpl www/partial/*.tmpl")) { 
@@ -18,4 +19,8 @@ foreach my $template (glob("www/*.tmpl www/partial/*.tmpl")) {
     $template_files{ $template } = 'templates/' . $target;
 }
 
+# find static files
+foreach my $static (glob("static/*")) {
+    $static_files{ $static } = './' . $static;
+}
 1;
